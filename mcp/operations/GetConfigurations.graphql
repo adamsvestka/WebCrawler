@@ -1,0 +1,12 @@
+query GetConfigurations {
+  configurations {
+    id
+    label
+    active
+    intervalMinutes
+    maxDepth
+    regexpBoundary
+    url
+    tags
+  }
+}

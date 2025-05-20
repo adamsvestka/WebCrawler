@@ -1,0 +1,9 @@
+query GetPages($configurationIds: [Int!]!) {
+  pages(configurationIds: $configurationIds) {
+    id
+    url
+    title
+    crawlTime
+    links
+  }
+}

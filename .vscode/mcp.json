@@ -1,0 +1,7 @@
+{
+    "servers": {
+        "my-mcp-server-5f0c4065": {
+            "url": "http://localhost:3001/sse"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../generated/prisma"
+    runtime  = "deno"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Configuration {
+    id              Int      @id @default(autoincrement())
+    url             String
+    label           String
+    active          Boolean
+    tags            String[]
+    regexpBoundary  String
+    maxDepth        Int
+    intervalMinutes Int
+    jobs            Job[]
+    pages           Page[]
+}
+
+enum Status {
+    PENDING
+    RUNNING
+    COMPLETED
+    FAILED
+}
+
+model Job {
+    id              Int           @id @default(autoincrement())
+    status          Status
+    startTime       DateTime?
+    endTime         DateTime?
+    pageCount       Int?
+    configurationId Int
+    configuration   Configuration @relation(fields: [configurationId], references: [id])
+}
+
+model Page {
+    id              Int           @id @default(autoincrement())
+    title           String
+    url             String
+    crawlTime       DateTime
+    links           String[]
+    configurationId Int
+    configuration   Configuration @relation(fields: [configurationId], references: [id])
+}
