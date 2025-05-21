@@ -13,7 +13,7 @@ export const Job = objectType({
             resolve: async (root, _args, ctx) => {
                 console.log(root, _args);
                 return await ctx.prisma.page.findMany({
-                    where: { configurationId: root.configurationId },
+                    where: { crawlerId: root.crawlerId },
                 });
             },
         });

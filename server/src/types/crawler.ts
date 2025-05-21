@@ -1,9 +1,9 @@
 import { objectType } from 'nexus';
 
-export const Configuration = objectType({
-    name: 'Configuration',
+export const Crawler = objectType({
+    name: 'Crawler',
     definition(t) {
-        t.id('id');
+        t.int('id');
         t.url('url');
         t.string('label');
         t.boolean('active');
@@ -15,7 +15,7 @@ export const Configuration = objectType({
             type: 'Job',
             resolve: async (parent, _args, ctx) => {
                 return await ctx.prisma.job.findMany({
-                    where: { configurationId: parent.id },
+                    where: { crawlerId: parent.id },
                 });
             },
         });
@@ -23,7 +23,7 @@ export const Configuration = objectType({
             type: 'Page',
             resolve: async (parent, _args, ctx) => {
                 return await ctx.prisma.page.findMany({
-                    where: { configurationId: parent.id },
+                    where: { crawlerId: parent.id },
                 });
             },
         });

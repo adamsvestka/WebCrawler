@@ -16,7 +16,8 @@
     "npm:prisma@*": "6.8.2",
     "npm:prisma@6.8.2": "6.8.2",
     "npm:rover@*": "0.0.2",
-    "npm:rover@0.0.2": "0.0.2"
+    "npm:rover@0.0.2": "0.0.2",
+    "npm:zod@*": "3.24.4"
   },
   "jsr": {
     "@std/assert@1.0.13": {

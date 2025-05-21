@@ -13,5 +13,5 @@ COPY server/generated/graphql/schema.graphql schema.graphql
 EXPOSE 3001
 
 # -m to allow mutations
-# -e graphql endpoint
+# -i graphql introspection
 CMD ["apollo-mcp-server", "-d", ".", "-s", "schema.graphql", "-o", "operations/GetConfigurations.graphql", "operations/GetPages.graphql", "-e", "http://host.docker.internal:4000", "--sse-port", "3001"]

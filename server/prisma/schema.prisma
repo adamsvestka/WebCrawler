@@ -9,7 +9,7 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Configuration {
+model Crawler {
     id              Int      @id @default(autoincrement())
     url             String
     label           String
@@ -30,21 +30,21 @@ enum Status {
 }
 
 model Job {
-    id              Int           @id @default(autoincrement())
-    status          Status
-    startTime       DateTime?
-    endTime         DateTime?
-    pageCount       Int?
-    configurationId Int
-    configuration   Configuration @relation(fields: [configurationId], references: [id])
+    id        Int       @id @default(autoincrement())
+    status    Status
+    startTime DateTime?
+    endTime   DateTime?
+    pageCount Int?
+    crawlerId Int
+    crawler   Crawler   @relation(fields: [crawlerId], references: [id])
 }
 
 model Page {
-    id              Int           @id @default(autoincrement())
-    title           String
-    url             String
-    crawlTime       DateTime
-    links           String[]
-    configurationId Int
-    configuration   Configuration @relation(fields: [configurationId], references: [id])
+    id        Int      @id @default(autoincrement())
+    title     String
+    url       String
+    crawlTime DateTime
+    links     String[]
+    crawlerId Int
+    crawler   Crawler  @relation(fields: [crawlerId], references: [id])
 }
